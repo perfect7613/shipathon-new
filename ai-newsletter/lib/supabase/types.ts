@@ -27,6 +27,7 @@ export interface Article {
   status: ArticleStatus;
   video_url: string | null;
   audio_url: string | null;
+  image_url: string | null;
   created_at: string;
 }
 

@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import { Article } from '@/lib/supabase/types';
 
 function formatDate(dateString: string) {
   return new Date(dateString).toLocaleDateString('en-US', {
@@ -13,7 +14,7 @@ function estimateReadTime(content: string) {
   return Math.ceil(wordCount / wordsPerMinute);
 }
 
-async function getArticles() {
+async function getArticles(): Promise<Article[]> {
   try {
     const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3002'}/api/content/articles`, {
       cache: 'no-store',
@@ -49,7 +50,7 @@ export default async function ArticlesPage() {
 
       {articles && articles.length > 0 ? (
         <div className="divide-y divide-gray-800">
-          {articles.map((article) => (
+          {articles.map((article: Article) => (
             <Link
               key={article.id}
               href={`/dashboard/articles/${article.id}`}
@@ -64,7 +65,7 @@ export default async function ArticlesPage() {
                     <span>·</span>
                     <span>{formatDate(article.created_at)}</span>
                     <span>·</span>
-                    <span>{estimateReadTime(article.content)} min read</span>
+                    <span>{estimateReadTime(article.content || '')} min read</span>
                     {article.status === 'draft' && (
                       <>
                         <span>·</span>
@@ -93,7 +94,7 @@ export default async function ArticlesPage() {
                       </div>
                       <span>AI Newsletter</span>
                     </div>
-                    
+
                     {/* Media indicators */}
                     {(article.audio_url || article.video_url) && (
                       <div className="flex items-center gap-2 ml-auto text-gray-600">

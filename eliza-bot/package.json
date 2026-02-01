@@ -1,0 +1,26 @@
+{
+  "name": "ai-newsletter-bot",
+  "version": "1.0.0",
+  "description": "ElizaOS Twitter bot for AI Newsletter",
+  "type": "module",
+  "scripts": {
+    "dev": "tsx watch src/index.ts",
+    "start": "tsx src/index.ts",
+    "build": "tsc"
+  },
+  "dependencies": {
+    "@elizaos/core": "^1.0.0",
+    "@elizaos/plugin-anthropic": "^1.0.0",
+    "@elizaos/plugin-bootstrap": "^1.0.0",
+    "@elizaos/plugin-sql": "^1.7.2",
+    "@elizaos/plugin-twitter": "^1.0.0",
+    "dotenv": "^16.4.7",
+    "node-cron": "^3.0.3"
+  },
+  "devDependencies": {
+    "@types/node": "^22.0.0",
+    "@types/node-cron": "^3.0.11",
+    "tsx": "^4.19.0",
+    "typescript": "^5.7.0"
+  }
+}

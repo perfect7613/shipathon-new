@@ -17,7 +17,7 @@ export async function POST(request: NextRequest) {
         }
 
         // Trigger article generation for each selected genre
-        const BACKEND_URL = process.env.NEXT_PUBLIC_BACKEND_URL || 'http://localhost:3002';
+        const BACKEND_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3002';
 
         const generatePromises = genres.map(async (genre: string) => {
             try {

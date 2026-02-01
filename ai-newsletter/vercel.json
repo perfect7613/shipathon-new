@@ -1,13 +1,5 @@
 {
   "framework": "nextjs",
   "buildCommand": "npm run build",
-  "outputDirectory": ".next",
-  "env": {
-    "NEXT_PUBLIC_SUPABASE_URL": "@supabase-url",
-    "NEXT_PUBLIC_SUPABASE_ANON_KEY": "@supabase-anon-key",
-    "SUPABASE_SERVICE_ROLE_KEY": "@supabase-service-role-key",
-    "DODO_PAYMENTS_API_KEY": "@dodo-api-key",
-    "DODO_WEBHOOK_SECRET": "@dodo-webhook-secret",
-    "DODO_PAYMENTS_ENVIRONMENT": "live_mode"
-  }
+  "outputDirectory": ".next"
 }

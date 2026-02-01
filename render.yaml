@@ -1,0 +1,38 @@
+services:
+  # Backend API
+  - type: web
+    name: ai-newsletter-backend
+    env: node
+    root: backend
+    buildCommand: npm install && npm run build
+    startCommand: npm start
+    plan: free
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: SUPABASE_URL
+        sync: false
+      - key: SUPABASE_SERVICE_ROLE_KEY
+        sync: false
+      - key: ANTHROPIC_API_KEY
+        sync: false
+      - key: GOOGLE_AI_API_KEY
+        sync: false
+      - key: ELEVENLABS_API_KEY
+        sync: false
+      - key: APIFY_TOKEN
+        sync: false
+      - key: FRONTEND_URL
+        sync: false # Set this to your Vercel URL
+      - key: REDIS_URL
+        fromService:
+          type: redis
+          name: ai-newsletter-redis
+          property: connectionString
+
+  # Redis for Job Queue
+  - type: redis
+    name: ai-newsletter-redis
+    ipAllowList: [] # Access only from within Render
+    plan: free
+    maxmemoryPolicy: noeviction

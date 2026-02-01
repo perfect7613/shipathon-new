@@ -15,6 +15,7 @@ app.use(cors({
     'http://localhost:3001',  // Alternative port
     'http://127.0.0.1:3000',
     'http://127.0.0.1:3001',
+    ...(env.FRONTEND_URL ? [env.FRONTEND_URL] : []),
   ],
   methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization'],
@@ -44,7 +45,7 @@ const PORT = env.PORT;
 app.listen(PORT, () => {
   console.log(`🚀 Server running on port ${PORT}`);
   console.log(`📊 Environment: ${env.NODE_ENV}`);
-  
+
   // Initialize background workers
   initializeWorkers().then(() => {
     console.log('✅ Background workers initialized');
